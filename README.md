@@ -1,173 +1,99 @@
+# Phase 1 — Exploration & Constraint Discovery (Day 1–7)
 
----
-## Data Scraping Freelance — Shopee Case
+## Overview
+Phase ini merupakan tahap eksplorasi awal untuk memahami **aksesibilitas data Shopee**, batasan teknis platform, serta kelayakan pendekatan scraping berbasis request/API untuk kebutuhan data bisnis.
 
-## Project Overview
-
-Project ini adalah **end-to-end Data Scraping & Market Monitoring Engine** menggunakan **Shopee** sebagai studi kasus.
-
-Tujuan utama project:
-
-* Mengambil data pasar e-commerce secara terstruktur
-* Membersihkan & menstandarkan data agar siap dianalisis
-* Melakukan monitoring perubahan harga dari waktu ke waktu
-* Menyediakan output yang **siap dipakai bisnis (Excel-based)**
-
-Project ini dirancang dengan mindset **freelancer profesional**, bukan eksperimen sekali jalan.
+Fokus utama bukan pada volume data, melainkan pada **pemahaman struktur sistem, perilaku proteksi, dan batas realistis ekstraksi data**.
 
 ---
 
-## Use Case Nyata
-
-Project ini relevan untuk:
-
-* Seller Shopee / Tokopedia
-* Brand owner
-* Market researcher
-* Competitive pricing analyst
-
-Contoh kebutuhan klien:
-
-* "Saya ingin tahu harga kompetitor setiap hari"
-* "Produk mana yang stabil / sering diskon"
-* "Bagaimana tren harga dalam 7–30 hari"
+## Objectives
+- Mempelajari struktur halaman dan data Shopee
+- Menguji kelayakan HTML scraping vs API-based extraction
+- Mengidentifikasi pagination dan parameter pencarian
+- Mengamati respon proteksi platform (rate limit, blocking, anti-bot)
+- Mendokumentasikan pendekatan yang **tidak layak** untuk produksi
 
 ---
 
-## Struktur Output Utama
-
-| File                            | Fungsi                     | Dipakai Oleh     |
-| ------------------------------- | -------------------------- | ---------------- |
-| `produk_shopee_raw.xlsx`        | Data mentah hasil scraping | Audit / Debug    |
-| `produk_shopee_clean.xlsx`      | Data bersih siap analisis  | Seller / Analyst |
-| `monitoring_harga.xlsx`         | Perubahan harga per waktu  | Decision Maker   |
-| `monitoring_harga_summary.xlsx` | Insight ringkas            | Owner / Manager  |
-| `error_log.txt`                 | Catatan error              | Developer / QA   |
+## Scope of Exploration
+- Single product page scraping
+- Search result pagination
+- Internal API discovery via browser network inspection
+- Request-based data extraction (non-authenticated)
 
 ---
 
-## Teknologi & Tools
+## Key Findings
 
-* Python
-* Requests / Playwright / Selenium (opsional)
-* Pandas
-* Excel (sebagai format deliverable utama)
+### 1. HTML Scraping Limitation
+- Konten produk dan hasil pencarian **dirender secara dinamis (JavaScript)**
+- HTML response kosong atau tidak mengandung data utama
+- BeautifulSoup tidak efektif untuk data inti
 
-> Catatan: Excel dipilih karena **95% klien non-teknis menggunakannya**.
-
----
-
-## Cara Menjalankan Project
-
-1. Clone repository
-2. Install dependency:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Jalankan script sesuai kebutuhan:
-
-   * Scrape 1 halaman → `scrape_single_page.py`
-   * Scrape kategori → `scrape_category_pagination.py`
-   * Cleaning data → `data_cleaning.py`
-   * Update monitoring → `update_monitoring.py`
+**Conclusion:**  
+HTML scraping langsung tidak viable.
 
 ---
 
-## Prinsip Desain
+### 2. Internal API Accessibility
+- Internal API Shopee teridentifikasi melalui Network tab
+- Endpoint mengembalikan data terstruktur (JSON)
+- Pagination logic dapat dipahami
 
-Project ini dibangun dengan prinsip:
+Namun:
+- Request langsung menghasilkan **403 Forbidden**
+- Session, token, dan fingerprint divalidasi secara ketat
+- Manual header/cookie injection tidak cukup
 
-* Data mentah **tidak ditimpa**
-* Script **boleh error, tapi tidak boleh mati total**
-* Output harus bisa dipahami **tanpa membaca kode**
-
----
-
-## Tentang Developer
-
-Project ini dibuat sebagai simulasi kerja **Data Extraction / Market Monitoring Freelancer**.
-
-Fokus utama:
-
-* Akurasi data
-* Kerapian output
-* Kesiapan dipakai bisnis
+**Conclusion:**  
+Internal API **protected by active anti-bot mechanisms**.
 
 ---
 
-# workflow.md (Alur Kerja Profesional)
+### 3. Pagination & Search Logic
+- Parameter `newest`, `limit`, dan `keyword` teridentifikasi
+- Logika pagination dapat dipetakan secara konseptual
+- Eksekusi tetap diblokir pada request-level
 
-## Observasi & Targeting
-
-* Menentukan halaman produk / kategori Shopee
-* Identifikasi field penting (nama, harga, rating, sold)
-
-*Kenapa penting:* bisnis tidak butuh semua data, hanya data bernilai.
-
----
-
-## Data Extraction (Scraping)
-
-* Scraping single page untuk validasi struktur
-* Scraping kategori dengan pagination
-* Delay & header diterapkan agar stabil
-
-*Relevansi nyata:* klien sering minta ratusan produk sekaligus.
+**Conclusion:**  
+Pagination logic diketahui, tetapi **tidak dapat dieksekusi secara aman via direct requests**.
 
 ---
 
-## Raw Data Validation
+## Final Assessment
 
-* Cek jumlah baris
-* Cek missing value
-* Simpan sebagai **raw data (tidak diubah)**
-
-*Kenapa:* raw data adalah bukti audit & cadangan.
-
----
-
-## Data Cleaning & Normalization
-
-* Harga → angka murni
-* Kolom distandarkan
-* Tipe data diperbaiki
-
-*Relevansi:* data mentah tidak bisa langsung dianalisis.
+| Aspect | Result |
+|------|-------|
+| HTML scraping | ❌ Not viable |
+| API direct access | ❌ Blocked (403) |
+| Token replay | ❌ Not stable / unsafe |
+| Request-based engine | ❌ Not production-ready |
 
 ---
 
-## Update & Monitoring
+## Strategic Conclusion
+Pendekatan **request-level scraping** terhadap Shopee:
+- Tidak stabil
+- Tidak repeatable
+- Tidak aman untuk kebutuhan klien
 
-* Scraping dijalankan ulang di hari berbeda
-* Data lama vs baru dibandingkan
-* Timestamp ditambahkan
-
-*Nilai bisnis:* ini dasar **monitoring harga & retainer bulanan**.
-
----
-
-## Error Handling & Logging
-
-* Halaman gagal di-skip
-* Error dicatat di `error_log.txt`
-
-*Profesionalisme:* script tidak boleh mati hanya karena 1 error.
+Phase ini berhasil mengidentifikasi bahwa:
+> **Pendekatan eksploratif perlu dihentikan sebelum masuk ke jalur ilegal atau tidak defensible.**
 
 ---
 
-## Delivery ke Klien
-
-* Output Excel rapi
-* Insight ringkas (summary)
-* Dokumentasi jelas
-
-*Klien tidak membeli kode, mereka membeli kejelasan & keputusan.*
+## Next Phase
+Hasil dari Phase 1 menjadi dasar untuk **Phase 2 — Market Intelligence Engine**, dengan pendekatan:
+- Legal-compliant
+- Browser-rendered data
+- Focus on business insights, not endpoint exploitation
+- Repeatable & client-ready
 
 ---
 
-## Penutup
+## Disclaimer
+Phase ini bersifat eksploratif dan edukatif.  
+Tidak digunakan untuk produksi, komersialisasi, atau bypass sistem proteksi platform.
 
-Workflow ini mencerminkan **alur kerja dunia nyata freelancer data**, bukan sekadar latihan teknis.
-
-> Jika kamu bisa menjalankan workflow ini end-to-end, kamu **siap dijual ke klien**.
+All findings are documented for learning, architectural decision-making, and system design evolution.
