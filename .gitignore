@@ -1,0 +1,6 @@
+# Ignore output data
+03_output/
+
+# Ignore Python cache
+__pycache__/
+*.pyc
