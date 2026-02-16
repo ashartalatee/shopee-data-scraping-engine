@@ -111,5 +111,5 @@ END OF REPORT
 with open(output_path, "w", encoding="utf-8") as f:
     f.write(report)
 
-print("DAY 16 DONE ✅")
+print("DAY 16 DONE")
 print(f"Report saved to: {output_path}")

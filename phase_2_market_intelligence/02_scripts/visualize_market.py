@@ -41,4 +41,4 @@ plt.ylabel("Number of Products")
 plt.tight_layout()
 plt.show()
 
-print("HARI 15 DONE ✅")
+print("HARI 15 DONE")

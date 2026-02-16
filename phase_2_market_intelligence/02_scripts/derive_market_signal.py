@@ -61,4 +61,4 @@ summary = df.groupby("capacity_ml").agg(
 
 summary.to_csv(output_path, index=False)
 
-print("\nHARI 14 DONE ✅")
+print("\nHARI 14 DONE")

@@ -14,6 +14,6 @@ filename = f"shopee_search_raw_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
 with open(filename, "w", encoding="utf-8") as f:
     f.write(response.text)
 
-print("HARI 12 DONE ✅")
+print("HARI 12 DONE")
 print("HTML saved as:", filename)
 print("HTML length:", len(response.text))

@@ -38,5 +38,5 @@ grid_sorted = grid.sort_values("opportunity_score", ascending=False)
 # Simpan hasil
 grid_sorted.to_csv(BASE_DIR / "03_output/market_gap_opportunity.csv", index=False)
 
-print("HARI 16 DONE ✅")
+print("HARI 16 DONE")
 print(grid_sorted.head(10))
