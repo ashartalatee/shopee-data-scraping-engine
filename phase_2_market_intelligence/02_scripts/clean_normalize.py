@@ -43,6 +43,3 @@ df["is_botol_minum"] = df["title_clean"].str.contains("botol")
 # output
 output_path = BASE_DIR / "03_output" / "clean_shopee_products.csv"
 df.to_csv(output_path, index=False)
-
-print("HARI 13 DONE")
-print(df.head())

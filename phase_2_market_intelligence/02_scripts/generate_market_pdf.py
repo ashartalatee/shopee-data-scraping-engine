@@ -103,6 +103,3 @@ elements.append(Paragraph(insight_text, normal_style))
 
 # Build PDF
 doc.build(elements)
-
-print("DAY 17 DONE")
-print(f"PDF saved to: {output_path}")
