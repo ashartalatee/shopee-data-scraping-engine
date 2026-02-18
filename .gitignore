@@ -1,6 +1,11 @@
-# Ignore output data
-03_output/
+# Logs
+logs/
 
-# Ignore Python cache
+# Output files
+03_output/*.csv
+03_output/*.txt
+03_output/*.pdf
+
+# Python
 __pycache__/
 *.pyc

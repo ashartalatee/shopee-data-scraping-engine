@@ -34,6 +34,7 @@ scripts = [
     "clean_normalize.py",
     "generate_market_report.py",
     "generate_market_pdf.py",
+    "market_scoring_model.py",
 ]
 
 def run_script(script_name):
