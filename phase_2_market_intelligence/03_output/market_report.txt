@@ -1,0 +1,40 @@
+
+=============================
+SHOPEE MARKET INTELLIGENCE REPORT
+Generated: 2026-02-19 04:32
+=============================
+
+TOTAL PRODUCTS ANALYZED:
+3
+
+AVERAGE PRICE:
+Rp 35,000
+
+DOMINANT PRICE RANGE:
+20-50K
+
+DOMINANT CAPACITY:
+2000 ml
+
+LOW COMPETITION PRICE ZONES:
+<20K, 50-100K, 100-200K, 200K+
+
+-----------------------------
+MARKET INSIGHT SUMMARY
+-----------------------------
+
+The market is currently dominated by products in the 20-50K range,
+with most listings offering capacity around 2000 ml.
+
+Average product price sits at Rp 35,000,
+indicating a mid-market positioning strategy.
+
+Price zones with relatively lower competition:
+<20K, 50-100K, 100-200K, 200K+
+
+These areas may represent potential entry opportunities,
+depending on demand validation and differentiation strategy.
+
+=============================
+END OF REPORT
+=============================
