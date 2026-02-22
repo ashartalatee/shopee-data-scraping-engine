@@ -5,43 +5,14 @@ MARKET SCORING MODEL REPORT
 
 Total Products: 3
 
------------------------------
-CORE SCORES
------------------------------
-Competition Score: 1.50 / 100
-Price Saturation Score: 100.00 / 100
-Opportunity Score (Raw): 47.40 / 100
+Competition Score: 1.5 / 100
+Price Saturation Score: 100.0 / 100
+Opportunity Score: 47.4 / 100
 Adjusted Opportunity Score: 2.84 / 100
 Market Attractiveness Index: 46.95
 
------------------------------
-PRICE ANALYSIS
------------------------------
 Dominant Price Range: 20-50K
 Gap Zones: <20K, 50-100K, 100-200K, 200K+
 
------------------------------
-DATA CONFIDENCE
------------------------------
-Confidence Score: 6.00 / 100
+Confidence Score: 6.0 / 100
 Confidence Level: LOW
-
-=============================
-INTERPRETATION
-=============================
-
-Opportunity Score:
-0–30   : Very weak opportunity
-30–60  : Moderate opportunity
-60–80  : Strong opportunity
-80–100 : High potential market
-
-Confidence Level:
-LOW    : Insufficient data sample
-MEDIUM : Moderate reliability
-HIGH   : Strong data reliability
-
-NOTE:
-Use Adjusted Opportunity Score when confidence is LOW.
-
-=============================
